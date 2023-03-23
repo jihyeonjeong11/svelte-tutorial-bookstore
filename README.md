@@ -52,3 +52,20 @@ You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
 
+## Analyzing Sveltekit
+
++layout.svelte acts as app.tsx
+
+```
+<div class="app">
+	<Header />
+
+	<main>
+		<slot /> // refers to page.svelte
+	</main>
+
+	<footer>
+		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+	</footer>
+</div>
+```
