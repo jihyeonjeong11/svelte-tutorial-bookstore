@@ -14,6 +14,9 @@
 	let loaded = false;
 	//$: setTimeout(() => (loaded = false), 1000);
 	const animate = () => {
+		let svgPath = document.querySelectorAll('#logo path');
+		let B = document.querySelector('#logo #B');
+
 		try {
 			const loader = anime.timeline({
 				complete: () => null
@@ -21,14 +24,14 @@
 
 			loader
 				.add({
-					targets: '#logo path',
+					targets: svgPath,
 					delay: 300,
 					duration: 1500,
 					easing: 'easeInOutQuart',
 					strokeDashoffset: [anime.setDashoffset, 0]
 				})
 				.add({
-					targets: '#logo #B',
+					targets: B,
 					duration: 700,
 					easing: 'easeInOutQuart',
 					opacity: 1
