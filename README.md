@@ -6,9 +6,6 @@ https://svelte.dev/docs leargning about svelte
 changed npx degit sveltejs/template {project name }
 to npm init vite and svelte/sveltekit option.
 
-
-
-
 2. find neat landing / portfolio design
 
 1. start coding.
@@ -69,3 +66,7 @@ You can preview the production build with `npm run preview`.
 	</footer>
 </div>
 ```
+
+svg animation perhaps..?
+
+https://www.youtube.com/watch?v=CdSvHJdL7ME&ab_channel=CodingAttack-OnlineTutorials
