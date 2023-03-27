@@ -2,7 +2,7 @@
 	<title>Loader Logo</title>
 	<g>
 		
-		<path
+		<!-- <path
 			stroke="currentColor"
 			fill="beige"
 			stroke-width="5"
@@ -14,7 +14,11 @@
                   L 50, 95
                   L 89, 73
                   L 89, 28 z"
-		/>
+		/> -->
+		<circle cx="50" cy="50" r="45" stroke="currentColor"
+		stroke-width="5"
+		stroke-linecap="round"
+		stroke-linejoin="round"/>
 		<g id="B" transform="translate(11.000000, 5.000000)" style="opacity: 0;">
 			<path
 				id="path"

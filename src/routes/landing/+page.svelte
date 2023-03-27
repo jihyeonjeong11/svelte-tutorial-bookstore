@@ -14,7 +14,7 @@
 	let loaded = false;
 	//$: setTimeout(() => (loaded = false), 1000);
 	const animate = () => {
-		let svgPath = document.querySelectorAll('#logo path');
+		let svgPath = document.querySelectorAll('#logo circle');
 		let B = document.querySelector('#logo #B');
 		console.log(B)
 
