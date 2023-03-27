@@ -16,6 +16,7 @@
 	const animate = () => {
 		let svgPath = document.querySelectorAll('#logo path');
 		let B = document.querySelector('#logo #B');
+		console.log(B)
 
 		try {
 			const loader = anime.timeline({
@@ -29,13 +30,13 @@
 					duration: 1500,
 					easing: 'easeInOutQuart',
 					strokeDashoffset: [anime.setDashoffset, 0]
-				})
+				})// 됨.
 				.add({
 					targets: B,
 					duration: 700,
 					easing: 'easeInOutQuart',
 					opacity: 1
-				})
+				}) // 왜아ㅓㄴ되지?
 				.add({
 					targets: '#logo',
 					delay: 500,
@@ -57,6 +58,7 @@
 	};
 
 	onMount(() => {
+		
 		//const timeout = setTimeout(() => (loaded = true), 10);
 		animate();
 		//return () => clearTimeout(timeout);
