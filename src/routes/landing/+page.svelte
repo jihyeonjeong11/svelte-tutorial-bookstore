@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import Loader from '../../icons/loader.svelte';
 	import anime from 'animejs';
+	import Nav from '../../controllers/nav/nav.svelte';
 	/*
    1. declare loaded loading true
    2. 1000ms timer
@@ -10,13 +11,16 @@
    5. loaded false
    6. render main
   */
+  	let loaded = true;
+    function load () {
+		loaded = true
+	}
 
-	let loaded = false;
-	//$: setTimeout(() => (loaded = false), 1000);
+	
+	// $: load()
 	const animate = () => {
 		let svgPath = document.querySelectorAll('#logo circle');
 		let B = document.querySelector('#logo #B');
-		console.log(B)
 
 		try {
 			const loader = anime.timeline({
@@ -57,11 +61,11 @@
 		}
 	};
 
-	onMount(() => {
+	onMount( () => {
 		
-		//const timeout = setTimeout(() => (loaded = true), 10);
+		const timeout = setTimeout(load, 3500);
 		animate();
-		//return () => clearTimeout(timeout);
+		return () => clearTimeout(timeout);
 	});
 </script>
 
@@ -69,13 +73,12 @@
 	{#if loaded === false}
 		<div class="loader-wrapper">
 			<div class="logo-wrapper">
-				<h1>this is loading page.</h1>
 				<Loader />
 			</div>
 		</div>
 	{:else}
 		<div>
-			<h1>this is landing page.</h1>
+			<Nav />
 		</div>
 	{/if}
 </main>
@@ -85,7 +88,7 @@
 		background-color: var(--dark-navy);
 		width: 100vw;
 		height: 100vh;
-		background-color: beige;
+		
 	}
 	.loader-wrapper {
 		position: fixed;
@@ -95,7 +98,6 @@
 		right: 0;
 		width: 100%;
 		height: 100%;
-		background-color: tan;
 		z-index: 99;
 		display: flex;
 		justify-content: center;

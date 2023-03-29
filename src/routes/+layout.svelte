@@ -4,7 +4,7 @@
 </script>
 
 <div class="app">
-	<Header />
+	<!-- <Header /> -->
 
 	<main>
 		<slot />
@@ -27,8 +27,7 @@
 		display: flex;
 		flex-direction: column;
 
-		width: 100%;
-		max-width: 64rem;
+		width: 100vw;
 		margin: 0;
 		box-sizing: border-box;
 	}
