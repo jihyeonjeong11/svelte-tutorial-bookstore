@@ -69,7 +69,7 @@
 	});
 </script>
 
-<main>
+<div class="wrapper">
 	{#if loaded === false}
 		<div class="loader-wrapper">
 			<div class="logo-wrapper">
@@ -81,13 +81,13 @@
 			<Nav />
 		</div>
 	{/if}
-</main>
+	</div>
 
 <style>
-	main {
+	.wrapper {
 		background-color: var(--dark-navy);
-		width: 100vw;
-		height: 100vh;
+		flex: 1;
+
 		
 	}
 	.loader-wrapper {

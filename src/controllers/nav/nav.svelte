@@ -15,14 +15,14 @@
 	</div>
 </nav>
 
-<style lang="scss">
+<style>
 	nav {
 		background-color: white;
 		position: fixed;
 		top: 0;
 		z-index: 11;
 		
-		width: 100vw;
+		width: 100%;
 		height: var(--nav-height);
 	}
     .header-wrapper {
