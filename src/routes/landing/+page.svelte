@@ -11,10 +11,12 @@
    5. loaded false
    6. render main
   */
+	let isHome = false
   	let loaded = true;
     function load () {
 		loaded = true
 	}
+
 
 	
 	// $: load()
@@ -62,7 +64,7 @@
 	};
 
 	onMount( () => {
-		
+		isHome = location.pathname === "/landing";
 		const timeout = setTimeout(load, 3500);
 		animate();
 		return () => clearTimeout(timeout);
@@ -78,7 +80,7 @@
 		</div>
 	{:else}
 		<div>
-			<Nav />
+			<Nav isHome={isHome} />
 		</div>
 	{/if}
 	</div>

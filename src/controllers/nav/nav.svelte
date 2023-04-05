@@ -1,22 +1,50 @@
 <script>
-	import { navLinks } from '../../utils/variables';
-	import { slide } from 'svelte/transition';
+	import { onMount } from 'svelte';
+	import { loaderDelay, navLinks } from '../../utils/variables';
+	import { fade, slide } from 'svelte/transition';
 
 	// creating orderly wave transition effect
 	// https://brittanychiang.com/
 	// https://github.com/bchiang7/v4/blob/main/src/components/nav.js
+
+	export let isHome; // /landing임.
+	// isMount
+
+	let loaded = false;
+
+	function fadeSlide(node, options) {
+		const slideTrans = slide(node, options);
+		return {
+			duration: options.duration,
+			css: (t) => `
+				${slideTrans.css(t)}
+				opacity: ${t};
+			`
+		};
+	}
+
+	function load() {
+		loaded = true;
+	}
+
+	onMount(() => {
+		load()
+	});
+	console.log(loaded)
 </script>
 
 <header class="flexBetween">
-	<nav>
-		<div class="header-wrapper">
-			<div>logo</div>
-			<ol transition:slide>
-				{#each navLinks as link}
-					<li>
-						<a href={link.url}>{link.name}</a>
-					</li>
-				{/each}
+	<nav class="flexBetween">
+		<div>logo</div>
+		<div class="ol-wrapper">
+			<ol class="flexBetween">
+				{#if loaded}
+					{#each navLinks as link}
+						<li transition:fadeSlide={{ duration: 1000 }}>
+							<a href={link.url}>{link.name}</a>
+						</li>
+					{/each}
+				{/if}
 			</ol>
 		</div>
 	</nav>
@@ -30,12 +58,20 @@
 		padding: 0px 50px;
 		width: 100%;
 		height: var(--nav-height);
-		background-color: rgba(10, 25, 47, 0.85);
+		background-color: rgba(10, 25, 47, 1);
+
 		filter: none !important;
 		pointer-events: auto !important;
 		user-select: auto !important;
-		backdrop-filter: blur(10px);
+		//background-color: rgba(10, 25, 47, 0.85);
+		//backdrop-filter: blur(10px);
 		transition: var(--transition);
+		@media (max-width: 1080px) {
+			padding: 0 40px;
+		}
+		@media (max-width: 768px) {
+			padding: 0 25px;
+		}
 	}
 
 	nav {
@@ -65,17 +101,8 @@
 		}
 	}
 
-	/* .header-wrapper {
+	.ol-wrapper {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
-		height: 100%;
-		padding: 0px 50px;
 	}
-	ol {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		width: 50%;
-	} */
 </style>
