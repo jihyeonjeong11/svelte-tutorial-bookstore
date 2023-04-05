@@ -70,3 +70,8 @@ You can preview the production build with `npm run preview`.
 svg animation perhaps..?
 
 https://www.youtube.com/watch?v=CdSvHJdL7ME&ab_channel=CodingAttack-OnlineTutorials
+
+how can i use scss preprocessor in sveltekit?
+
+just yarn add -D sass!
+you already have sveltePreprocessor and it's defined at svelte.config.js!
