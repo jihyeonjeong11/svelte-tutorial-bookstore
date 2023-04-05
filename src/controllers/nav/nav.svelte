@@ -12,14 +12,16 @@
 
 	let loaded = false;
 
-	function fadeSlide(node, options) {
-		const slideTrans = slide(node, options);
+	function fadeSlide(node, { delay = 0, ...options }) {
+		const slideTrans = slide(node, { delay, ...options });
+		const fadeTrans = fade(node, { delay, ...options });
 		return {
+			delay: delay,
 			duration: options.duration,
 			css: (t) => `
-				${slideTrans.css(t)}
-				opacity: ${t};
-			`
+        ${slideTrans.css(t)}
+        ${fadeTrans.css(t)}
+      `
 		};
 	}
 
@@ -28,9 +30,9 @@
 	}
 
 	onMount(() => {
-		load()
+		load();
 	});
-	console.log(loaded)
+	console.log(loaded);
 </script>
 
 <header class="flexBetween">
@@ -39,11 +41,22 @@
 		<div class="ol-wrapper">
 			<ol class="flexBetween">
 				{#if loaded}
-					{#each navLinks as link}
-						<li transition:fadeSlide={{ duration: 1000 }}>
+					{#each navLinks as link, i}
+						<li transition:fadeSlide={{ duration: 300, delay: i * 100 }}>
 							<a href={link.url}>{link.name}</a>
 						</li>
 					{/each}
+					<!-- {#each navLinks as { url, name }, i}
+  <CSSTransition in={true} 
+                 key={i} 
+                 classNames={fadeDownClass} 
+                 timeout={timeout} 
+                 delay={isHome ? i * 100 : 0}>
+    <li>
+      <Link to={url}>{name}</Link>
+    </li>
+  </CSSTransition>
+{/each} -->
 				{/if}
 			</ol>
 		</div>
@@ -55,10 +68,11 @@
 		position: fixed;
 		top: 0;
 		z-index: 11;
-		padding: 0px 50px;
+		//padding: 0px 50px 0px 50px;
+		//padding: 1rem;
 		width: 100%;
 		height: var(--nav-height);
-		background-color: rgba(10, 25, 47, 1);
+		background-color: var(--dark-navy);
 
 		filter: none !important;
 		pointer-events: auto !important;
@@ -66,6 +80,7 @@
 		//background-color: rgba(10, 25, 47, 0.85);
 		//backdrop-filter: blur(10px);
 		transition: var(--transition);
+		justify-content: center;
 		@media (max-width: 1080px) {
 			padding: 0 40px;
 		}
@@ -76,7 +91,7 @@
 
 	nav {
 		position: relative;
-		width: 100%;
+		width: 90%;
 		color: var(--lightest-slate);
 		font-family: var(--font-mono);
 		counter-reset: item 0;
@@ -104,5 +119,15 @@
 	.ol-wrapper {
 		display: flex;
 		align-items: center;
+	}
+
+	ol {
+		gap: 2rem;
+		li {
+			color: white;
+			a {
+				color: white;
+			}
+		}
 	}
 </style>
