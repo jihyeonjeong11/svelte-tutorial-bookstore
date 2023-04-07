@@ -3,6 +3,7 @@
 	import Loader from '../../icons/loader.svelte';
 	import anime from 'animejs';
 	import Nav from '../../controllers/nav/nav.svelte';
+	import {fade} from "svelte/transition";
 	/*
    1. declare loaded loading true
    2. 1000ms timer
@@ -16,6 +17,8 @@
     function load () {
 		loaded = true
 	}
+
+	let y;
 
 
 	
@@ -80,13 +83,19 @@
 		</div>
 	{:else}
 		<div>
-			<Nav isHome={isHome} />
+			{#if y < 50}
+			<div transition:fade>
+				<Nav isHome={isHome} />
+			</div>
+			{/if}
 			<div class="dummy">
 
 			</div>
 		</div>
 	{/if}
 	</div>
+
+	<svelte:window bind:scrollY={y} />
 
 <style>
 	.wrapper {
