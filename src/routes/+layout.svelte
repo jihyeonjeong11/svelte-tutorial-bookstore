@@ -17,17 +17,17 @@
 
 <style>
 	.app {
-		display: flex;
-		flex-direction: column;
 		min-height: 100vh;
+		/* display: grid;
+		grid-template-columns: 100%;
+		grid-template-rows: 1fr auto; 
+		왜 main width가 안먹히지???
+		*/
+
+		width: 100vw;
 	}
 
 	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-
-		width: 100vw;
 		margin: 0;
 		box-sizing: border-box;
 	}

@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { loaderDelay, navLinks } from '../../utils/variables';
-	import { fade, slide } from 'svelte/transition';
+	import { fade, slide, fly } from 'svelte/transition';
 
 	// creating orderly wave transition effect
 	// https://brittanychiang.com/
@@ -19,8 +19,9 @@
 			delay: delay,
 			duration: options.duration,
 			css: (t) => `
-        ${slideTrans.css(t)}
+        ${slideTrans.css(t)} 
         ${fadeTrans.css(t)}
+		
       `
 		};
 	}
@@ -32,7 +33,6 @@
 	onMount(() => {
 		load();
 	});
-	console.log(loaded);
 </script>
 
 <header class="flexBetween">
@@ -42,21 +42,10 @@
 			<ol class="flexBetween">
 				{#if loaded}
 					{#each navLinks as link, i}
-						<li transition:fadeSlide={{ duration: 300, delay: i * 100 }}>
+						<li transition:fly={{ y: -100, duration: 500, delay: i * 300 }}>
 							<a href={link.url}>{link.name}</a>
 						</li>
 					{/each}
-					<!-- {#each navLinks as { url, name }, i}
-  <CSSTransition in={true} 
-                 key={i} 
-                 classNames={fadeDownClass} 
-                 timeout={timeout} 
-                 delay={isHome ? i * 100 : 0}>
-    <li>
-      <Link to={url}>{name}</Link>
-    </li>
-  </CSSTransition>
-{/each} -->
 				{/if}
 			</ol>
 		</div>
@@ -72,13 +61,13 @@
 		//padding: 1rem;
 		width: 100%;
 		height: var(--nav-height);
-		background-color: var(--dark-navy);
+		//background-color: var(--dark-navy);
 
 		filter: none !important;
 		pointer-events: auto !important;
 		user-select: auto !important;
-		//background-color: rgba(10, 25, 47, 0.85);
-		//backdrop-filter: blur(10px);
+		background-color: rgba(10, 25, 47, 0.85);
+		backdrop-filter: blur(10px);
 		transition: var(--transition);
 		justify-content: center;
 		@media (max-width: 1080px) {
@@ -99,6 +88,7 @@
 		.logo {
 			a {
 				color: var(--green);
+				
 				width: 42px;
 				height: 42px;
 				&:hover,
@@ -123,10 +113,15 @@
 
 	ol {
 		gap: 2rem;
+		li::marker {
+			color: var(--green);
+		}
 		li {
-			color: white;
+			transition-delay: 0ms;
+			margin: 0px 5px;
 			a {
-				color: white;
+				text-decoration: none;
+				color: var(--slate);
 			}
 		}
 	}
