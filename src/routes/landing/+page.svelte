@@ -3,7 +3,7 @@
 	import Loader from '../../icons/loader.svelte';
 	import anime from 'animejs';
 	import Nav from '../../controllers/nav/nav.svelte';
-	import {fade} from "svelte/transition";
+	import { fade } from 'svelte/transition';
 	/*
    1. declare loaded loading true
    2. 1000ms timer
@@ -12,16 +12,11 @@
    5. loaded false
    6. render main
   */
-	let isHome = false
-  	let loaded = true;
-    function load () {
-		loaded = true
+	let isHome = false;
+	let loaded = true;
+	function load() {
+		loaded = true;
 	}
-
-	let y;
-
-
-	
 	// $: load()
 	const animate = () => {
 		let svgPath = document.querySelectorAll('#logo circle');
@@ -39,7 +34,7 @@
 					duration: 1500,
 					easing: 'easeInOutQuart',
 					strokeDashoffset: [anime.setDashoffset, 0]
-				})// 됨.
+				}) // 됨.
 				.add({
 					targets: B,
 					duration: 700,
@@ -66,8 +61,8 @@
 		}
 	};
 
-	onMount( () => {
-		isHome = location.pathname === "/landing";
+	onMount(() => {
+		isHome = location.pathname === '/landing';
 		const timeout = setTimeout(load, 3500);
 		animate();
 		return () => clearTimeout(timeout);
@@ -83,26 +78,17 @@
 		</div>
 	{:else}
 		<div>
-			{#if y < 50}
-			<div transition:fade>
-				<Nav isHome={isHome} />
-			</div>
-			{/if}
-			<div class="dummy">
+			<Nav {isHome} />
 
-			</div>
+			<div class="dummy" />
 		</div>
 	{/if}
-	</div>
-
-	<svelte:window bind:scrollY={y} />
+</div>
 
 <style>
 	.wrapper {
-		background-color: var(--dark-navy);
+		background-color: var(--navy);
 		flex: 1;
-
-		
 	}
 	.loader-wrapper {
 		position: fixed;
@@ -125,5 +111,4 @@
 	.dummy {
 		height: 5000px;
 	}
-
 </style>

@@ -18,11 +18,13 @@
 	--transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 	--green: #64ffda;
 	--nav-height: 100px;
+	--nav-scroll-height: 70px;
 	--slate: #8892b0;
+	--navy: #0a192f;
 }
 
 #logo {
-	color: var(--green)
+	color: var(--green);
 }
 
 body {
@@ -45,8 +47,8 @@ body {
 
 .flexCenter {
 	display: flex;
-    justify-content: center;
-    align-items: center;
+	justify-content: center;
+	align-items: center;
 }
 
 /* background-color: var(--color-bg-1);
@@ -133,6 +135,3 @@ button:focus:not(:focus-visible) {
 	width: 1px;
 	white-space: nowrap;
 } */
-
-
-
